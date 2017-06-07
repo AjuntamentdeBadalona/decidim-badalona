@@ -1,8 +1,15 @@
 # frozen_string_literal: true
+# Default CarrierWave setup.
+#
+CarrierWave.configure do |config|
+  config.permissions = 0o666
+  config.directory_permissions = 0o777
+end
 
-
-if Rails.application.secrets.aws_access_key_id.present?
-  require "carrierwave/storage/fog"
+# Setup CarrierWave to use Amazon S3. Add `gem "fog-aws" to your Gemfile.
+#
+if Rails.env.production?
+  require 'carrierwave/storage/fog'
 
   CarrierWave.configure do |config|
     config.storage = :fog
@@ -11,17 +18,16 @@ if Rails.application.secrets.aws_access_key_id.present?
       provider:              'AWS',                                             # required
       aws_access_key_id:     Rails.application.secrets.aws_access_key_id,       # required
       aws_secret_access_key: Rails.application.secrets.aws_secret_access_key,   # required
-      region:                'eu-west-1',                                       # optional, defaults to 'us-east-1'
-      host:                  's3-eu-west-1.amazonaws.com',                                  # optional, defaults to nil
+      host:                  "s3.eu-central-1.amazonaws.com",
+      endpoint: "https://s3.eu-central-1.amazonaws.com",
+      region:                "eu-central-1"                                     # optional, defaults to 'us-east-1'
     }
-    config.fog_directory  = 'decidim_badalona'                                  # required
-    config.fog_public     = false                                               # optional, defaults to true
+    config.fog_public = true
+    config.fog_directory  = "decidim-badalona"                                # required
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" }    # optional, defaults to {}
   end
 else
   CarrierWave.configure do |config|
-    config.permissions = 0o666
-    config.directory_permissions = 0o777
     config.storage = :file
     config.enable_processing = !Rails.env.test?
   end
