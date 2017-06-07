@@ -3,7 +3,7 @@
   "description": "decidim_badalona - Direct and participatory democracy web platform based on Decidim framework",
   "keywords": [],
   "addons": [
-    "heroku-postgresql",
+    "heroku-postgresql:standard-0",
     "heroku-redis",
     "logentries",
     "memcachedcloud",
