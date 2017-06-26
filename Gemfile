@@ -2,8 +2,7 @@ source "https://rubygems.org"
 
 ruby '2.4.1'
 
-gem "decidim", "0.2.0"
-
+gem "decidim", "~> 0.3.2"
 
 gem 'uglifier', '>= 1.3.0'
 gem 'faker', '~> 1.7.3'
@@ -11,11 +10,10 @@ gem 'faker', '~> 1.7.3'
 group :development, :test do
   gem 'byebug', platform: :mri
   
-  gem "decidim-dev", "0.2.0"
+  gem "decidim-dev"
 end
 
 group :development do
-  gem 'web-console'
   gem 'listen', '~> 3.1.0'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
