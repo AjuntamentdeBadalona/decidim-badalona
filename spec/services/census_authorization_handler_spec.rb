@@ -9,7 +9,7 @@ describe CensusAuthorizationHandler do
   let(:date_of_birth) { Date.civil(1987, 9, 17) }
   let(:postal_code) { "08917" }
   let(:document_number) { "12345678A" }
-  let(:document_type) { :nie }
+  let(:document_type) { :NIE }
   let(:params) do
     {
       date_of_birth: date_of_birth,
@@ -131,16 +131,6 @@ describe CensusAuthorizationHandler do
   end
 
   context "with an invalid response" do
-    context "with a malformed response" do
-      before do
-        allow(handler)
-          .to receive(:response)
-          .and_return(JSON.parse("This is not a JSON!"))
-      end
-
-      it { is_expected.to_not be_valid }
-    end
-
     context "with an invalid response code" do
       before do
         allow(handler)
