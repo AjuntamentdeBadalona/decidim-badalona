@@ -1,6 +1,4 @@
 es:
-  census_authorization_handler:
-    invalid_document: Número de documento incorrecto
   activemodel:
     attributes:
       census_authorization_handler:
@@ -25,6 +23,6 @@ es:
           document_number: Número de documento
     census_authorization_handler:
       document_types:
-        dni: DNI del ciudadano
-        nie: Targeta de residencia
-        passport: Pasaporte
+        DNI: DNI del ciudadano
+        NIE: Targeta de residencia
+        PASS: Pasaporte

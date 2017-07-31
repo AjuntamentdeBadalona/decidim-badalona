@@ -17,8 +17,6 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   validates :document_type, inclusion: { in: %i(DNI NIE PASS) }, presence: true
   validates :document_number, format: { with: /\A[A-z0-9]*\z/ }, presence: true
 
-  validate :document_type_valid
-
   def self.from_params(params, additional_params = {})
     instance = super(params, additional_params)
 
@@ -58,6 +56,11 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
     )
   end
 
+  def valid?
+    super
+    response.present? && response["status"] == "OK"
+  end
+
   private
 
   def sanitized_document_type
@@ -72,13 +75,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def sanitized_date_of_birth
-    @sanitized_date_of_birth ||= date_of_birth&.strftime("%Y%m%d")
-  end
-
-  def document_type_valid
-    return nil if response.blank?
-
-    errors.add(:document_number, I18n.t("census_authorization_handler.invalid_document")) unless response["status"] == "OK"
+    @sanitized_date_of_birth ||= date_of_birth&.strftime("%d/%m/%Y")
   end
 
   def response
@@ -89,20 +86,22 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
 
     return @response if defined?(@response)
 
-    response ||= Faraday.get Rails.application.secrets.census_url do |request|
-      request.headers["Content-Type"] = "text/json"
-      request.body = request_body
+    connection = Faraday.new Rails.application.secrets.dig(:census, :url), ssl: { verify: false }
+    connection.basic_auth(Rails.application.secrets.dig(:census, :auth_user), Rails.application.secrets.dig(:census, :auth_pass))
+
+    response = connection.get do |request|
+      request.params = request_params
     end
 
     @response ||= JSON.parse(response.body)
   end
 
-  def request_body
+  def request_params
     {
-      datnaix: date_of_birth,
+      datnaix: sanitized_date_of_birth,
       cdpost: postal_code,
       tipdoc: document_type,
       docident: document_number
-    }.to_json
+    }
   end
 end
