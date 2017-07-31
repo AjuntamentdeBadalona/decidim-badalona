@@ -31,3 +31,8 @@ group :production do
   gem 'sentry-raven'
   gem 'sidekiq'
 end
+
+group :test do
+  gem "rspec-rails"
+  gem "database_cleaner"
+end
