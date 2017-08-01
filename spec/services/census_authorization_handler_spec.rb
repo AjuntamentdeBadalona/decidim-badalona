@@ -76,24 +76,6 @@ describe CensusAuthorizationHandler do
 
         it { is_expected.not_to be_valid }
       end
-
-      context "when data from a date field is provided" do
-        let(:params) do
-          {
-            "date_of_birth(1i)" => "2010",
-            "date_of_birth(2i)" => "8",
-            "date_of_birth(3i)" => "16"
-          }
-        end
-
-        let(:date_of_birth) { nil }
-
-        it "correctly parses the date" do
-          expect(subject.date_of_birth.year).to eq(2010)
-          expect(subject.date_of_birth.month).to eq(8)
-          expect(subject.date_of_birth.day).to eq(16)
-        end
-      end
     end
 
     context "when everything is fine" do
