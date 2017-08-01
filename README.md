@@ -2,6 +2,8 @@
 
 Citizen Participation and Open Government application.
 
+[![Build Status](https://img.shields.io/travis/AjuntamentdeBadalona/decidim-badalona/master.svg)](https://travis-ci.org/AjuntamentdeBadalona/decidim-badalona)
+
 This is the open-source repository for decidim-badalona, based on [Decidim](https://github.com/decidim/decidim).
 
 ## Deploying the app
