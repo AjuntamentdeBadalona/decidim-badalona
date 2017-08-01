@@ -17,6 +17,8 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   validates :document_type, inclusion: { in: %i(DNI NIE PASS) }, presence: true
   validates :document_number, format: { with: /\A[A-z0-9]*\z/ }, presence: true
 
+  validate :check_response
+
   def self.from_params(params, additional_params = {})
     instance = super(params, additional_params)
 
@@ -56,12 +58,11 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
     )
   end
 
-  def valid?
-    super
-    response.present? && response["status"] == "OK"
-  end
-
   private
+
+  def check_response
+    errors.add(:base, :invalid) unless response.present? && response["status"] == "OK"
+  end
 
   def sanitized_document_type
     case document_type&.to_sym
