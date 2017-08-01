@@ -3,6 +3,9 @@
 Citizen Participation and Open Government application.
 
 [![Build Status](https://img.shields.io/travis/AjuntamentdeBadalona/decidim-badalona/master.svg)](https://travis-ci.org/AjuntamentdeBadalona/decidim-badalona)
+[![codecov](https://codecov.io/gh/AjuntamentdeBadalona/decidim-badalona/branch/master/graph/badge.svg)](https://codecov.io/gh/AjuntamentdeBadalona/decidim-badalona)
+[![Code Climate](https://codeclimate.com/github/AjuntamentdeBadalona/decidim-badalona/badges/gpa.svg)](https://codeclimate.com/github/AjuntamentdeBadalona/decidim-badalona)
+[![Dependency Status](https://gemnasium.com/AjuntamentdeBadalona/decidim-badalona.svg)](https://gemnasium.com/AjuntamentdeBadalona/decidim-badalona)
 
 This is the open-source repository for decidim-badalona, based on [Decidim](https://github.com/decidim/decidim).
 
