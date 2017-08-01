@@ -1,0 +1,28 @@
+ca:
+  activemodel:
+    attributes:
+      census_authorization_handler:
+        date_of_birth: Data de naixement
+        postal_code: Codi postal
+        document_type: Tipus de document
+        document_number: Número de document
+  census_authorization:
+    form:
+      date_select:
+        day: "Dia"
+        month: "Mes"
+        year: "Any"
+  decidim:
+    authorization_handlers:
+      census_authorization_handler:
+        name: El padró
+        fields:
+          date_of_birth: Data de naixement
+          postal_code: Codi postal
+          document_type: Tipus de document
+          document_number: Número de document
+    census_authorization_handler:
+      document_types:
+        DNI: DNI del ciutadà
+        NIE: Targeta de residència
+        PASS: Passaport
