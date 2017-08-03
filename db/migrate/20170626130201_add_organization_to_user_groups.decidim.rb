@@ -2,11 +2,11 @@
 # frozen_string_literal: true
 
 class AddOrganizationToUserGroups < ActiveRecord::Migration[5.0]
-  def change
-    class UserGroup < ApplicationRecord
-      self.table_name = :decidim_user_groups
-    end
+  class UserGroup < ApplicationRecord
+    self.table_name = :decidim_user_groups
+  end
 
+  def change
     add_column :decidim_user_groups, :decidim_organization_id, :integer
 
     UserGroup.find_each do |user_group|
