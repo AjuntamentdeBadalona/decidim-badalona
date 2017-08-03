@@ -3,12 +3,9 @@
   "description": "decidim_badalona - Direct and participatory democracy web platform based on Decidim framework",
   "keywords": [],
   "addons": [
-    "heroku-postgresql:standard-0",
-    "heroku-redis",
-    "logentries",
-    "memcachedcloud",
-    "newrelic",
-    "sendgrid"
+    "heroku-postgresql:hobby-dev",
+    "heroku-redis:hobby-dev",
+    "sendgrid:starter"
   ],
   "scripts": {
     "postdeploy":"DISABLE_DATABASE_ENVIRONMENT_CHECK=1 rake db:schema:load db:migrate db:seed"
@@ -27,8 +24,7 @@
       "required": false
     },
     "HEROKU_APP_NAME": {
-      "description": "Needed for review apps",
-      "required": false
+      "required": true
     },
     "SECRET_KEY_BASE": {
       "description": "A secret used by Rails to identify sessions",
