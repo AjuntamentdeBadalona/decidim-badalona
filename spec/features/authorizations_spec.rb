@@ -15,7 +15,7 @@ describe "Authorizations", type: :feature, perform_enqueued: true do
   end
 
   before do
-    Decidim.authorization_handlers = [CensusAuthorizationHandler]    
+    Decidim.authorization_handlers = [CensusAuthorizationHandler]
     allow_any_instance_of(CensusAuthorizationHandler).to receive(:response).and_return(JSON.parse("{ \"status\": \"OK\" }"))
     switch_to_host(organization.host)
   end
@@ -37,13 +37,13 @@ describe "Authorizations", type: :feature, perform_enqueued: true do
 
       it "redirects the user to the authorization form after the first sign in" do
         fill_in_authorization_form
-        click_button "Enviar"
-        expect(page).to have_content("correctament")
+        click_button "Send"
+        expect(page).to have_content("successfully")
       end
 
       it "allows the user to skip it" do
         find(".skip a").click
-        expect(page).to have_content("benvingut")
+        expect(page).to have_content("Welcome")
       end
     end
   end
@@ -60,9 +60,9 @@ describe "Authorizations", type: :feature, perform_enqueued: true do
       visit decidim.new_authorization_path(handler: "census_authorization_handler")
 
       fill_in_authorization_form
-      click_button "Enviar"
+      click_button "Send"
 
-      expect(page).to have_content("correctament")
+      expect(page).to have_content("successfully")
 
       visit decidim.authorizations_path
 
@@ -80,7 +80,7 @@ describe "Authorizations", type: :feature, perform_enqueued: true do
       end
 
       it "shows the authorization at their account" do
-        visit decidim.authorizations_path        
+        visit decidim.authorizations_path
 
         within ".authorizations-list" do
           expect(page).to have_content("El padró")
