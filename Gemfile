@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby '2.4.1'
 
 gem "decidim"
+gem 'faker'
 
 gem 'uglifier', '>= 1.3.0'
 
