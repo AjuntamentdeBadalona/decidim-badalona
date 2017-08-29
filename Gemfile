@@ -3,9 +3,9 @@ source "https://rubygems.org"
 ruby '2.4.1'
 
 gem "decidim"
+gem 'faker'
 
 gem 'uglifier', '>= 1.3.0'
-gem 'faker', '~> 1.7.3'
 
 group :development, :test do
   gem 'byebug', platform: :mri
