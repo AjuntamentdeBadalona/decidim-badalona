@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby '2.4.1'
+ruby '2.4.2'
 
-gem "decidim"
+gem "decidim", "~> 0.6.4"
 gem 'faker'
 
 gem 'uglifier', '>= 1.3.0'
