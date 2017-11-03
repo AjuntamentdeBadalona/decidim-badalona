@@ -6,6 +6,7 @@ require "digest/md5"
 # to verify the citizen's residence.
 class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   include ActionView::Helpers::SanitizeHelper
+  include Virtus::Multiparams
 
   attribute :date_of_birth, Date
   attribute :postal_code, String

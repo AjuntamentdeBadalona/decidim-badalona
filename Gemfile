@@ -8,6 +8,8 @@ gem 'faker'
 
 gem 'uglifier', '>= 1.3.0'
 
+gem "virtus-multiparams"
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem "decidim-dev"
