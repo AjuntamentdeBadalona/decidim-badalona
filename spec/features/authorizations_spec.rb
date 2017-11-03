@@ -7,15 +7,15 @@ describe "Authorizations", type: :feature, perform_enqueued: true do
   let(:authorizations) { ["CensusAuthorizationHandler"] }
 
   def fill_in_authorization_form
-    page.execute_script("$('#date_field_authorization_handler_date_of_birth').focus()")
-    page.find(".datepicker-dropdown .day", text: "12").click
-    fill_in "Codi postal", with: "08225"
-    select "DNI del ciutadà", from: "Tipus de document"
     fill_in "Número de document", with: "12345678A"
+    select "DNI del ciutadà", from: "Tipus de document"
+    select "12", from: "authorization_handler_date_of_birth_3i"
+    select "January", from: "authorization_handler_date_of_birth_2i"
+    select "1979", from: "authorization_handler_date_of_birth_1i"
+    fill_in "Codi postal", with: "08225"
   end
 
   before do
-    Decidim.authorization_handlers = [CensusAuthorizationHandler]
     allow_any_instance_of(CensusAuthorizationHandler).to receive(:response).and_return(JSON.parse("{ \"status\": \"OK\" }"))
     switch_to_host(organization.host)
   end
@@ -39,11 +39,6 @@ describe "Authorizations", type: :feature, perform_enqueued: true do
         fill_in_authorization_form
         click_button "Send"
         expect(page).to have_content("successfully")
-      end
-
-      it "allows the user to skip it" do
-        find(".skip a").click
-        expect(page).to have_content("Welcome")
       end
     end
   end
