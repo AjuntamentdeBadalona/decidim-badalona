@@ -15,6 +15,7 @@ ca:
   decidim:
     authorization_handlers:
       census_authorization_handler:
+        explanation: Verifica't amb el padró
         name: El padró
         fields:
           date_of_birth: Data de naixement

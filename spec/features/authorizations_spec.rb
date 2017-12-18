@@ -2,9 +2,9 @@
 
 require "spec_helper"
 
-describe "Authorizations", type: :feature, perform_enqueued: true do
+describe "Authorizations", type: :feature, perform_enqueued: true, with_authorization_workflows: ["census_authorization_handler"] do
   let(:organization) { create :organization, available_authorizations: authorizations }
-  let(:authorizations) { ["CensusAuthorizationHandler"] }
+  let(:authorizations) { ["census_authorization_handler"] }
 
   def fill_in_authorization_form
     fill_in "Número de document", with: "12345678A"
@@ -52,14 +52,14 @@ describe "Authorizations", type: :feature, perform_enqueued: true do
     end
 
     it "allows the user to authorize against available authorizations" do
-      visit decidim.new_authorization_path(handler: "census_authorization_handler")
+      visit decidim_verifications.new_authorization_path(handler: "census_authorization_handler")
 
       fill_in_authorization_form
       click_button "Send"
 
       expect(page).to have_content("successfully")
 
-      visit decidim.authorizations_path
+      visit decidim_verifications.authorizations_path
 
       within ".authorizations-list" do
         expect(page).to have_content("El padró")
@@ -75,12 +75,12 @@ describe "Authorizations", type: :feature, perform_enqueued: true do
       end
 
       it "shows the authorization at their account" do
-        visit decidim.authorizations_path
+        visit decidim_verifications.authorizations_path
 
         within ".authorizations-list" do
           expect(page).to have_content("El padró")
           expect(page).not_to have_link("El padró")
-          expect(page).to have_content(I18n.localize(authorization.created_at, format: :long))
+          expect(page).to have_content(I18n.localize(authorization.granted_at, format: :long))
         end
       end
     end
