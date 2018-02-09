@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "Authorizations", type: :feature, perform_enqueued: true, with_authorization_workflows: ["census_authorization_handler"] do
+describe "Authorizations", type: :system, perform_enqueued: true, with_authorization_workflows: ["census_authorization_handler"] do
   let(:organization) { create :organization, available_authorizations: authorizations }
   let(:authorizations) { ["census_authorization_handler"] }
 
