@@ -12,6 +12,8 @@ ca:
         day: "Dia"
         month: "Mes"
         year: "Any"
+  census_authorization_handler:
+    age_under_12: Has de ser major de 12 anys per validar-te
   decidim:
     authorization_handlers:
       census_authorization_handler:

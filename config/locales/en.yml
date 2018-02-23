@@ -1,0 +1,3 @@
+en:
+  census_authorization_handler:
+    age_under_12: You must be 12 years old at least in order to be verified.
