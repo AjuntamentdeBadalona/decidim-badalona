@@ -18,6 +18,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   validates :document_type, inclusion: { in: %i(DNI NIE PASS) }, presence: true
   validates :document_number, format: { with: /\A[A-z0-9]*\z/ }, presence: true
 
+  validate :over_12
   validate :check_response
 
   # If you need to store any of the defined attributes in the authorization you
@@ -76,5 +77,20 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
       tipdoc: document_type,
       docident: document_number
     }
+  end
+
+  def over_12
+    errors.add(:date_of_birth, I18n.t("census_authorization_handler.age_under_12")) unless age && age >= 12
+  end
+
+  def age
+    return nil if date_of_birth.blank?
+
+    now = Date.current
+    extra_year = (now.month > date_of_birth.month) || (
+      now.month == date_of_birth.month && now.day >= date_of_birth.day
+    )
+
+    now.year - date_of_birth.year - (extra_year ? 0 : 1)
   end
 end

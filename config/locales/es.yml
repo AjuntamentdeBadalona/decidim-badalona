@@ -12,6 +12,8 @@ es:
         day: "Día"
         month: "Mes"
         year: "Año"
+  census_authorization_handler:
+    age_under_12: Tienes que ser mayor de 12 años para validarte
   decidim:
     authorization_handlers:
       census_authorization_handler:
