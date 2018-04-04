@@ -13,6 +13,7 @@ gem "virtus-multiparams"
 group :development, :test do
   gem 'byebug', platform: :mri
   gem "decidim-dev"
+  gem "puma"
 end
 
 group :development do

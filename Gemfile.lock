@@ -422,6 +422,7 @@ GEM
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
     public_suffix (3.0.2)
+    puma (3.11.3)
     rack (2.0.4)
     rack-cors (1.0.2)
     rack-protection (2.0.1)
@@ -631,6 +632,7 @@ DEPENDENCIES
   lograge
   newrelic_rpm
   passenger
+  puma
   rspec-rails
   sendgrid-ruby
   sentry-raven
