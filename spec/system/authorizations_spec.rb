@@ -44,7 +44,7 @@ describe "Authorizations", type: :system, perform_enqueued: true, with_authoriza
   end
 
   context "user account" do
-    let(:user) { create(:user, :confirmed) }
+    let(:user) { create(:user, :confirmed, organization: organization) }
 
     before do
       login_as user, scope: :user
