@@ -2,8 +2,7 @@ source "https://rubygems.org"
 
 ruby '2.5.0'
 
-gem "decidim", "~> 0.10.0"
-gem "decidim-assemblies"
+gem "decidim", "~> 0.11.1"
 gem 'faker'
 
 gem 'uglifier', '>= 1.3.0'
