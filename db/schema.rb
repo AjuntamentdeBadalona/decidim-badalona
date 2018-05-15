@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 20180515095353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_stat_statements"
   enable_extension "pg_trgm"
   enable_extension "ltree"
 
@@ -252,7 +251,7 @@ ActiveRecord::Schema.define(version: 20180515095353) do
 
   create_table "decidim_categorizations", force: :cascade do |t|
     t.bigint "decidim_category_id", null: false
-    t.string "categorizable_type"
+    t.string "categorizable_type", null: false
     t.bigint "categorizable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -273,7 +272,7 @@ ActiveRecord::Schema.define(version: 20180515095353) do
 
   create_table "decidim_comments_comments", id: :serial, force: :cascade do |t|
     t.text "body", null: false
-    t.string "decidim_commentable_type"
+    t.string "decidim_commentable_type", null: false
     t.integer "decidim_commentable_id", null: false
     t.integer "decidim_author_id", null: false
     t.datetime "created_at", null: false
@@ -430,7 +429,7 @@ ActiveRecord::Schema.define(version: 20180515095353) do
 
   create_table "decidim_moderations", id: :serial, force: :cascade do |t|
     t.integer "decidim_participatory_space_id", null: false
-    t.string "decidim_reportable_type"
+    t.string "decidim_reportable_type", null: false
     t.integer "decidim_reportable_id", null: false
     t.integer "report_count", default: 0, null: false
     t.datetime "hidden_at"
@@ -615,7 +614,7 @@ ActiveRecord::Schema.define(version: 20180515095353) do
     t.bigint "decidim_user_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index "decidim_proposal_id, decidim_author_id, COALESCE(decidim_user_group_id, ('-1'::integer)::bigint)", name: "decidim_proposals_proposal_endorsmt_proposal_auth_ugroup_uniq", unique: true
+    t.index "decidim_proposal_id, decidim_author_id, (COALESCE(decidim_user_group_id, ('-1'::integer)::bigint))", name: "decidim_proposals_proposal_endorsmt_proposal_auth_ugroup_uniq", unique: true
     t.index ["decidim_author_id"], name: "decidim_proposals_proposal_endorsement_author"
     t.index ["decidim_proposal_id"], name: "decidim_proposals_proposal_endorsement_proposal"
     t.index ["decidim_user_group_id"], name: "decidim_proposals_proposal_endorsement_user_group"
@@ -686,9 +685,9 @@ ActiveRecord::Schema.define(version: 20180515095353) do
   end
 
   create_table "decidim_resource_links", id: :serial, force: :cascade do |t|
-    t.string "from_type"
+    t.string "from_type", null: false
     t.integer "from_id", null: false
-    t.string "to_type"
+    t.string "to_type", null: false
     t.integer "to_id", null: false
     t.string "name", null: false
     t.jsonb "data"
