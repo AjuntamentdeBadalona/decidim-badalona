@@ -10,8 +10,10 @@ describe CensusAuthorizationHandler do
   let(:postal_code) { "08917" }
   let(:document_number) { "12345678A" }
   let(:document_type) { :NIE }
+  let(:user) { create :user  }
   let(:params) do
     {
+      user: user,
       date_of_birth: date_of_birth,
       postal_code: postal_code,
       document_number: document_number,
