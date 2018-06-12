@@ -16,5 +16,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+.rspec-failures
+
 # Ignore public uploads
 public/uploads
