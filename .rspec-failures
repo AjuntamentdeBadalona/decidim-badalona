@@ -1,0 +1,5 @@
+example_id                                    | status  | run_time      |
+--------------------------------------------- | ------- | ------------- |
+./spec/system/authorizations_spec.rb[1:1:1:1] | unknown |               |
+./spec/system/authorizations_spec.rb[1:2:1]   | passed  | 15.89 seconds |
+./spec/system/authorizations_spec.rb[1:2:2:1] | unknown |               |
